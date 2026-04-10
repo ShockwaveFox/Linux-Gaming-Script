@@ -16,6 +16,7 @@
 - Top‑right device dropdown:
     - Choose your actual mic  
     - Not “Monitor”, not virtual devices
+    - Actual, physical mic device
 
 - You should see:
     - Live input meter moving when you speak
@@ -33,11 +34,23 @@
 - Recommended order for voice:
     1. High‑Pass Filter
     2. Noise Reduction
-    3. Compressor
-    4. Limiter
-    5. (Optional) Equalizer
+    3. Expander
+    4. Compressor
+    5. Limiter
+    6. (Optional) Equalizer
 
+Before adding any effects, set mic input so peaks hit around -12 dB
 You can toggle effects on/off individually.
+
+G#### ain staging
+   - Speak normally
+   - Set input gain so peaks hit:
+  - \-12 dB to \-6 dB
+
+Avoid:
+
+red clipping
+constantly hitting 0 dB
 
 #### Starter mic preset (gaming / Discord / streaming)
 - This is a safe, clean baseline that works for most mics.
@@ -55,6 +68,8 @@ You can toggle effects on/off individually.
     - Strength: Start low
 
 __Removes keyboard and room noise__
+__removes stationary background noise__
+__reduces constant noise like fans, hum, air__
 __Too strong = robotic voice__
 
 #### Compressor (the biggest quality boost)
@@ -96,6 +111,7 @@ __Recommended Discord settings:__
     - Noise suppression
     - Echo cancellation
     - Automatic gain control
+ - Set input mode to standard microphone (not “automatic” tuning profiles) if available
 
 __Let EasyEffects handle all processing.__
 
@@ -112,5 +128,7 @@ __Let EasyEffects handle all processing.__
 - In KDE:
     - System Settings → Autostart
     - Add EasyEffects
+- Or use -
+    - systemctl --user enable easyeffects
 
 __Effects apply automatically on login.__
