@@ -42,4 +42,5 @@ winetricks
 # Optional audio compatibility
 lib32-pipewire-jack
 
+# Be in same directory when running the below command
 #yay -S --needed $(cat gaming-packages.txt)
