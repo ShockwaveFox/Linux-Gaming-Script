@@ -32,3 +32,17 @@ easyeffects
 # sudo dnf install \
 # https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
 # https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# verification checks - run commands separately one at a time
+# 1. Check Vulkan driver (RADV)
+    vulkaninfo | grep RADV
+        # Expected: driverName = AMD RADV
+# 2. Check GameMode daemon
+    gamemoded -t
+        # Expected: gamemoded is running
+# 3. Check MangoHud injection
+    mangohud glxgears
+        # Expected: spinning gears + MangoHud overlay
+# 4. Confirm GPU + driver
+    vulkaninfo | grep -E "driverName|deviceName"
+        # Expected: AMD GPU detected with RADV

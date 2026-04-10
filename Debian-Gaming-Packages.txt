@@ -1,13 +1,21 @@
+# REQUIRED before installing Steam / Proton packages
+# sudo dpkg --add-architecture i386
+# sudo apt update
+
 # Core platforms
 steam
 discord
 
 # Performance tools
 gamemode
+gamemode:i386
 mangohud
+mangohud:i386
 
 # Graphics stack (AMD, Vulkan)
 mesa-vulkan-drivers
+mesa-vulkan-drivers:i386
+libgl1-mesa-dri:i386
 vulkan-tools
 
 # Controllers & Steam devices
@@ -15,14 +23,28 @@ steam-devices
 
 # Audio (PipeWire + effects)
 pipewire
+pipewire-pulse
 wireplumber
 easyeffects
 
-# Install Command
+# Install Command (after enabling i386)
 # sudo apt install $(cat gaming-packages-debian.txt)
 
-# Flatpaks recommended for below items
+# Flatpaks recommended (Debian best practice)
 # flatpak install flathub \
 # com.heroicgameslauncher.hgl \
 # net.davidotek.pupgui2 \
 # io.github.eduke32.EDuke32
+
+# 1. Check Vulkan driver (RADV)
+    vulkaninfo | grep RADV
+        # Expected: driverName = AMD RADV
+# 2. Check GameMode daemon
+    gamemoded -t
+        # Expected: gamemoded is running
+# 3. Check MangoHud injection
+    mangohud glxgears
+        # Expected: spinning gears + MangoHud overlay
+# 4. Confirm GPU + driver
+    vulkaninfo | grep -E "driverName|deviceName"
+        # Expected: AMD GPU detected + RADV

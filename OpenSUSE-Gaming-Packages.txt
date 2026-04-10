@@ -29,3 +29,17 @@ easyeffects
 
 # Install Command
 # sudo zypper install $(cat gaming-packages-opensuse.txt)
+
+# verification checks - run commands separately one at a time
+# 1. Check Vulkan driver (RADV)
+    vulkaninfo | grep RADV
+        # Expected: driverName = AMD RADV
+# 2. Check GameMode daemon
+    gamemoded -t
+        # Expected: gamemoded is running
+# 3. Check MangoHud injection
+    mangohud glxgears
+        # Expected: spinning gears + MangoHud overlay
+# 4. Confirm GPU + driver
+    vulkaninfo | grep -E "driverName|deviceName"
+        # Expected: AMD GPU recognised + RADV
