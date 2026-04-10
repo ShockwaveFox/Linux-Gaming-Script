@@ -27,6 +27,7 @@ pipewire
 pipewire-alsa
 pipewire-pulse
 wireplumber
+easyeffects
 
 # Optional Windows compatibility helpers
 wine-staging
