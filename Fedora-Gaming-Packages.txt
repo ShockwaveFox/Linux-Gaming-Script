@@ -5,16 +5,28 @@ heroic-games-launcher
 protonup-qt
 eduke32
 
+# Firmware
+linux-firmware
+
+# Input / compatibility
+SDL2
+SDL2.i686
+
 # Performance tools
 gamemode
 gamemode.i686
 mangohud
 mangohud.i686
+goverlay
 
 # Graphics stack (AMD, Vulkan)
 mesa-dri-drivers
 mesa-vulkan-drivers
 vulkan-tools
+mesa-dri-drivers.i686
+mesa-vulkan-drivers.i686
+vulkan-loader
+vulkan-loader.i686
 
 # Controllers & Steam devices
 steam-devices
@@ -41,7 +53,8 @@ easyeffects
     gamemoded -t
         # Expected: gamemoded is running
 # 3. Check MangoHud injection
-    mangohud glxgears
+    # mangohud glxgears
+    mangohud vkcube
         # Expected: spinning gears + MangoHud overlay
 # 4. Confirm GPU + driver
     vulkaninfo | grep -E "driverName|deviceName"
