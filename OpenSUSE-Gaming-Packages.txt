@@ -9,6 +9,7 @@ eduke32
 gamemode
 mangohud
 mangohud-32bit
+goverlay
 
 # Vulkan loader
 libvulkan1
