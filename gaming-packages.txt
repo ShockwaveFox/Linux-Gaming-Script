@@ -10,6 +10,7 @@ discord
 heroic
 protonup-qt
 eduke32
+# grp files need to be placed in ~/.config/eduke32
 
 # Performance tools
 gamemode
@@ -44,3 +45,8 @@ lib32-pipewire-jack
 
 # Be in same directory when running the below command
 #yay -S --needed $(cat gaming-packages.txt)
+
+# verification checks
+# vulkaninfo | grep RADV
+# gamemoded -t
+# mangohud glxgears
