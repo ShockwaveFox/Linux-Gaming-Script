@@ -1,3 +1,9 @@
+# Kernels
+linux-zen
+linux-zen-headers
+linux-lts
+linux-lts-headers
+
 # Core platforms
 steam
 discord
