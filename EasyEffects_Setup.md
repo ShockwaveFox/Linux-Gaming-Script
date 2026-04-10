@@ -10,7 +10,7 @@
 - The app has two tabs at the top:
     - Output (headphones/speakers)
     - Input (microphone)
-- Click Input (this is where mic processing happens).
+- Click Input (this is where mic processing happens) - you should see a meter moving when you talk
 
 #### Select your microphone
 - Top‑right device dropdown:
@@ -25,6 +25,14 @@
     - Check KDE → Audio → Input Device
     - Confirm PipeWire is active
 
+#### Gain staging
+   - Speak normally
+   - Set input gain so peaks hit:
+  - \-12 dB to \-6 dB
+
+Avoid:
+- red clipping
+- constantly hitting 0 dB
 
 #### Enable effects (order matters)
 - EasyEffects works as a chain — effects are processed top to bottom.
@@ -39,18 +47,8 @@
     5. Limiter
     6. (Optional) Equalizer
 
-Before adding any effects, set mic input so peaks hit around -12 dB
-You can toggle effects on/off individually.
-
-G#### ain staging
-   - Speak normally
-   - Set input gain so peaks hit:
-  - \-12 dB to \-6 dB
-
-Avoid:
-
-red clipping
-constantly hitting 0 dB
+- Before adding any effects, set mic input so peaks hit around -12 dB
+- You can toggle effects on/off individually.
 
 #### Starter mic preset (gaming / Discord / streaming)
 - This is a safe, clean baseline that works for most mics.
@@ -67,10 +65,10 @@ constantly hitting 0 dB
     - Threshold: Default
     - Strength: Start low
 
-__Removes keyboard and room noise__
-__removes stationary background noise__
-__reduces constant noise like fans, hum, air__
-__Too strong = robotic voice__
+- __Removes keyboard and room noise__
+- __removes stationary background noise__
+- __reduces constant noise like fans, hum, air__
+- __Too strong = robotic voice__
 
 #### Compressor (the biggest quality boost)
 - Suggested starting values:
@@ -128,7 +126,7 @@ __Let EasyEffects handle all processing.__
 - In KDE:
     - System Settings → Autostart
     - Add EasyEffects
-- Or use -
+- Or if available -
     - systemctl --user enable easyeffects
 
 __Effects apply automatically on login.__
