@@ -48,5 +48,8 @@ lib32-pipewire-jack
 
 # verification checks - run commands separatly one at a time
   # 1. vulkaninfo | grep RADV
+        # driverName = AMD RADV
   # 2. gamemoded -t
+        # gamemoded is running
   # 3. mangohud glxgears
+        # window opens with spinning gears and MangoHud overlay appears (FPS, frame time, etc.)
