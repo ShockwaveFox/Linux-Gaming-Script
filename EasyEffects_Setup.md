@@ -28,11 +28,19 @@
 #### Gain staging
    - Speak normally
    - Set input gain so peaks hit:
-  - \-12 dB to \-6 dB
+  - -12 dB to -6 dB
 
 Avoid:
 - red clipping
 - constantly hitting 0 dB
+
+#### Input gain vs compressor gain separation
+
+- Do not use compressor makeup gain to fix a quiet microphone — set input gain first.
+- This prevents:
+    - noise amplification
+    - compressor pumping
+    - inconsistent voice levels
 
 #### Enable effects (order matters)
 - EasyEffects works as a chain — effects are processed top to bottom.
@@ -42,12 +50,11 @@ Avoid:
 - Recommended order for voice:
     1. High‑Pass Filter
     2. Noise Reduction
-    3. Expander
+    3. Expander (reduces background noise when you are not speaking)
     4. Compressor
     5. Limiter
     6. (Optional) Equalizer
 
-- Before adding any effects, set mic input so peaks hit around -12 dB
 - You can toggle effects on/off individually.
 
 #### Starter mic preset (gaming / Discord / streaming)
@@ -65,9 +72,7 @@ Avoid:
     - Threshold: Default
     - Strength: Start low
 
-- __Removes keyboard and room noise__
-- __removes stationary background noise__
-- __reduces constant noise like fans, hum, air__
+- __Removes constant background noise (fans, hum, room tone)__
 - __Too strong = robotic voice__
 
 #### Compressor (the biggest quality boost)
@@ -109,7 +114,7 @@ __Recommended Discord settings:__
     - Noise suppression
     - Echo cancellation
     - Automatic gain control
- - Set input mode to standard microphone (not “automatic” tuning profiles) if available
+    - Set input mode to standard microphone (not “automatic” tuning profiles) if available
 
 __Let EasyEffects handle all processing.__
 
@@ -126,7 +131,10 @@ __Let EasyEffects handle all processing.__
 - In KDE:
     - System Settings → Autostart
     - Add EasyEffects
-- Or if available -
+- If available on your system -
     - systemctl --user enable easyeffects
+        -  to check if available - systemctl --user list-unit-files | grep easyeffects
+        -  easyeffects.service    disabled - will display if it exists, nothing returned if it does not
+        -  to check running status - systemctl --user status easyeffects
 
 __Effects apply automatically on login.__
