@@ -10,6 +10,13 @@ gamemode
 mangohud
 mangohud-32bit
 
+# Vulkan loader
+libvulkan1
+libvulkan1-32bit
+
+# Firmware
+kernel-firmware-amd
+
 # Graphics stack (AMD, Vulkan)
 Mesa
 Mesa-vulkan-drivers
@@ -17,15 +24,23 @@ vulkan-tools
 Mesa-vulkan-drivers-32bit
 Mesa-libGL1-32bit
 libdrm-32bit
+Mesa-libEGL1-32bit
 
 # Controllers & Steam devices
 steam-devices
+libSDL2-2_0-0
+libSDL2-2_0-0-32bit
 
 # Audio (PipeWire + effects)
 pipewire
 pipewire-pulseaudio
 wireplumber
 easyeffects
+alsa-utils
+
+# Add packman repo
+# sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman
+# sudo zypper dup --from packman
 
 # Install Command
 # sudo zypper install $(cat gaming-packages-opensuse.txt)
@@ -38,7 +53,8 @@ easyeffects
     gamemoded -t
         # Expected: gamemoded is running
 # 3. Check MangoHud injection
-    mangohud glxgears
+    # mangohud glxgears
+    mangohud vkcube
         # Expected: spinning gears + MangoHud overlay
 # 4. Confirm GPU + driver
     vulkaninfo | grep -E "driverName|deviceName"
