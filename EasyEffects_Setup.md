@@ -28,7 +28,7 @@
 #### Gain staging
    - Speak normally
    - Set input gain so peaks hit:
-  - -12 dB to -6 dB
+      - -12 dB to -6 dB
 
 Avoid:
 - red clipping
@@ -72,7 +72,7 @@ Avoid:
     - Threshold: Default
     - Strength: Start low
 
-- __Removes constant background noise (fans, hum, room tone)__
+- __Removes background noise (fans, hum, room tone)__
 - __Too strong = robotic voice__
 
 #### Compressor (the biggest quality boost)
@@ -84,14 +84,15 @@ Avoid:
     - Release: 100 ms
     - Makeup gain: Enable
 
-__Makes your voice consistent and “radio‑like”__
+- __Makes your voice consistent and “radio‑like”__
+- __If voice sounds unnatural, reduce Noise Reduction or Compressor before adding EQ.__
 
 #### Limiter (prevents clipping)
 
 - Ceiling: ‑1 dB
 - Lookahead: Enabled
 
-__Prevents Discord clipping when you shout__
+__Prevents digital clipping or app noise spikes__
 
 #### Optional: Equalizer (clarity)
 Only if you want extra polish:
@@ -114,7 +115,7 @@ __Recommended Discord settings:__
     - Noise suppression
     - Echo cancellation
     - Automatic gain control
-    - Set input mode to standard microphone (not “automatic” tuning profiles) if available
+    - Use a standard microphone (not “automatic” tuning profiles) if available
 
 __Let EasyEffects handle all processing.__
 
@@ -131,10 +132,9 @@ __Let EasyEffects handle all processing.__
 - In KDE:
     - System Settings → Autostart
     - Add EasyEffects
-- If available on your system -
-    - systemctl --user enable easyeffects
-        -  to check if available - systemctl --user list-unit-files | grep easyeffects
-        -  easyeffects.service    disabled - will display if it exists, nothing returned if it does not
-        -  to check running status - systemctl --user status easyeffects
+- Use systemctl if available on your system -
+        -  systemctl --user list-unit-files | grep easyeffects - checks if service is available
+        -  systemctl --user enable easyeffects - enable service
+        -  systemctl --user status easyeffects - checks status of service
 
 __Effects apply automatically on login.__
