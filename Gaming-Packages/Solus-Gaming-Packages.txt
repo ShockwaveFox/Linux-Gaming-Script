@@ -1,0 +1,47 @@
+# =========================
+# System packages (eopkg)
+# =========================
+
+# Core platforms
+steam
+heroic-games-launcher
+discord
+protonup-qt
+
+# Firmware
+linux-firmware
+
+# Graphics stack
+mesa
+vulkan-tools
+
+# Vulkan extras
+vulkan-validation-layers
+
+# Input
+SDL2
+
+# Performance
+gamemode
+mangohud
+goverlay
+
+# Controllers
+steam-devices
+
+# Audio
+pipewire
+wireplumber
+alsa-utils
+easyeffects
+
+# Optional
+# gamescope
+# wine
+# winetricks
+
+# =========================
+# Install commands
+# =========================
+
+# sudo eopkg install $(cat gaming-packages-solus.txt)
