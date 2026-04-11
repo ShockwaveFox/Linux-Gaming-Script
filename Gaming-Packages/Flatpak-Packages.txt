@@ -1,0 +1,86 @@
+# =========================
+# Arch
+# =========================
+# Install Flatpak
+	sudo pacman -S flatpak
+
+# Enable Flathub
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Install gaming apps
+	flatpak install flathub com.heroicgameslauncher.hgl
+	flatpak install flathub com.eduke32.EDuke32
+
+# Optional verify
+	flatpak list | grep -E "Heroic|EDuke32"
+
+# =========================
+# OpenSUSE
+# =========================
+# Install Flatpak
+	sudo zypper install flatpak
+
+# Enable Flathub
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Install apps
+	flatpak install flathub com.heroicgameslauncher.hgl
+	flatpak install flathub com.eduke32.EDuke32
+
+# Verify
+	flatpak list | grep -E "Heroic|EDuke32"
+
+# =========================
+# Fedora
+# =========================
+# Flatpak usually preinstalled, but ensure it exists
+	sudo dnf install flatpak
+
+# Enable Flathub (if not already enabled)
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Install apps
+	flatpak install flathub com.heroicgameslauncher.hgl
+	flatpak install flathub com.eduke32.EDuke32
+
+# Verify
+	flatpak list | grep -E "Heroic|EDuke32"
+
+# =========================
+# Fedora
+# =========================
+# Enable flatpak
+	sudo apt install flatpak
+
+# Add Flathub
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Install apps
+	flatpak install flathub com.heroicgameslauncher.hgl
+	flatpak install flathub com.eduke32.EDuke32
+
+# Verify
+	flatpak list | grep -E "Heroic|EDuke32"
+
+# =========================
+# Solus
+# =========================
+# Install flatpak
+	sudo eopkg install flatpak
+
+# Enable Flathub
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Install apps
+	flatpak install flathub com.heroicgameslauncher.hgl
+	flatpak install flathub com.eduke32.EDuke32
+
+# Verify
+	flatpak list | grep -E "Heroic|EDuke32"
+
+# First run permissions
+	flatpak override --user --filesystem=home com.eduke32.EDuke32
+
+# Controller & Performance tools
+	flatpak override --user --env=MANGOHUD=1 com.heroicgameslauncher.hgl
+
