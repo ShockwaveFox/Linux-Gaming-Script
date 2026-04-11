@@ -1,0 +1,43 @@
+Arch
+# Enable multi-lib in /etc/pacman.conf
+# Remove the # symbols from lines below and save file
+
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+
+# Perform system update - 
+sudo pacman -Syu
+
+OpenSUSE
+# Add Packman repo (required for multimedia codecs)
+  sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman
+
+# Switch system multimedia packages to Packman
+  sudo zypper dup --from packman
+
+Fedora
+# Ensure RPM fusions is set up first
+  sudo dnf install \
+  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+Debian
+# Open sources file to edit
+  sudo nano /etc/apt/sources.list.d/debian.sources
+
+# Add the below contents into file
+
+Types: deb
+URIs: http://deb.debian.org/debian
+Suites: bookworm
+Components: main contrib non-free non-free-firmware
+
+Types: deb
+URIs: http://deb.debian.org/debian
+Suites: bookworm-updates
+Components: main contrib non-free non-free-firmware
+
+Types: deb
+URIs: http://security.debian.org/debian-security
+Suites: bookworm-security
+Components: main contrib non-free non-free-firmware

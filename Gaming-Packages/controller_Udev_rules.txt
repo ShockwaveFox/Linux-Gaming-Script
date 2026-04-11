@@ -1,0 +1,26 @@
+# Shows input devices detected
+      cat /proc/bus/input/devices
+
+# Show existing devices on system
+libinput list-devices
+
+# Test in Steam - some GameSir issues are Steam config, not Linux
+      Steam → Settings → Controller
+      Disable / enable:
+            “Generic Gamepad Support”
+            “Xbox Support” (test both states)
+
+# Creates a new file in /etc/udev/rules.d named 99-gamesir-ignore-kbd.rules
+# 99 as higher number means the rules get applied after other system rules
+      sudo nano /etc/udev/rules.d/99-gamesir-ignore-kbd.rules
+
+# Udev rules to stop controller being detected/used as keyboard and mouse
+      SUBSYSTEM=="input", ATTRS{idVendor}=="3537", ATTRS{idProduct}=="100a", ENV{ID_INPUT_KEYBOARD}=="1", ENV{ID_INPUT_IGNORE}="1"
+      SUBSYSTEM=="input", ATTRS{idVendor}=="3537", ATTRS{idProduct}=="100a", ENV{ID_INPUT_MOUSE}=="1", ENV{ID_INPUT_IGNORE}="1"
+
+# Reloads all rules and reapplies them
+      sudo udevadm control --reload-rules
+      sudo udevadm trigger
+
+# Runs both commands - && only runs second command if first one is successful
+      sudo udevadm control --reload-rules && sudo udevadm trigger
