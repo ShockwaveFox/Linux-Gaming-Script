@@ -1,0 +1,68 @@
+# gaming-packages-opensuse.txt
+
+# ===  Add Packman ===
+sudo zypper addrepo -f -p 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/' packman
+
+# ===  Full upgrade + switch packages to Packman ===  (very important for Mesa)
+sudo zypper dup --allow-vendor-change
+
+# ===  Install everything === 
+sudo zypper install $(cat gaming-packages-opensuse.txt)
+
+# === Core Platforms ===
+steam
+discord
+heroic
+eduke32
+
+# === Performance Tools ===
+gamemode
+gamemode-32bit
+mangohud
+mangohud-32bit
+goverlay
+gamescope
+
+# === Graphics Stack (AMD + RADV Vulkan) ===
+Mesa
+Mesa-32bit
+Mesa-libGL1
+Mesa-libGL1-32bit
+Mesa-libEGL1
+Mesa-libEGL1-32bit
+Mesa-vulkan-device-select
+libvulkan_radeon
+libvulkan_radeon-32bit
+libvulkan1
+libvulkan1-32bit
+vulkan-tools
+
+# === Firmware ===
+kernel-firmware-amdgpu
+
+# === Controllers & Input ===
+steam-devices
+inputplumber
+sdl2
+sdl2-32bit
+
+# === Audio (PipeWire) ===
+pipewire
+pipewire-pulseaudio
+wireplumber
+easyeffects
+alsa-utils
+
+# === Post-Install Checks ===
+
+# === Install ProtonUp-Qt via Flatpak === (not in repos):
+flatpak install flathub net.davidotek.pupgui2
+
+# === Verify RADV Vulkan driver ===
+vulkaninfo | grep -E "driverName|deviceName"
+
+# === GameMode ===
+gamemoded -t
+
+# === MangoHud test ===
+mangohud vkcube

@@ -1,0 +1,71 @@
+# gaming-packages-fedora.txt
+
+# First enable RPM Fusion: sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+# Then: sudo dnf update
+
+# Usage: sudo dnf install $(cat gaming-packages-fedora.txt)
+
+# === Core Platforms ===
+steam
+discord
+heroic-games-launcher
+eduke32                # If available, otherwise use Flatpak
+
+# === Performance Tools ===
+gamemode
+mangohud
+goverlay
+gamescope
+
+# === Graphics Stack (AMD + RADV Vulkan) ===
+mesa-vulkan-drivers
+lib32-mesa-vulkan-drivers   # or mesa-vulkan-drivers.i686
+vulkan-tools
+mesa-libGL
+mesa-libEGL
+mesa-vulkan-device-select
+
+# === Firmware ===
+kernel-firmware
+
+# === Controllers & Input ===
+steam-devices
+inputplumber               # From COPR if not in main repos: https://copr.fedorainfracloud.org/coprs/shadowblip/InputPlumber/
+sdl2
+sdl2.i686
+
+# === Audio (PipeWire - default on modern Fedora) ===
+pipewire
+pipewire-pulseaudio
+wireplumber
+easyeffects
+alsa-utils
+
+# Add the ShadowBlip InputPlumber COPR repository
+sudo dnf copr enable shadowblip/InputPlumber
+
+# Install InputPlumber
+sudo dnf install inputplumber
+
+# Enable and start the service (important for your GameSir G7 Pro)
+systemctl --user enable --now inputplumber
+
+# Optional: Enable suspend service (helps with resume behavior)
+sudo systemctl enable inputplumber-suspend.service
+
+# Install ProtonUp-Qt via Flatpak (recommended way)
+flatpak install flathub net.davidotek.pupgui2
+
+# === Post-Install Checks ===
+
+# === Install ProtonUp-Qt via Flatpak === (not in repos):
+flatpak install flathub net.davidotek.pupgui2
+
+# === Verify RADV Vulkan driver ===
+vulkaninfo | grep -E "driverName|deviceName"
+
+# === GameMode ===
+gamemoded -t
+
+# === MangoHud test ===
+mangohud vkcube

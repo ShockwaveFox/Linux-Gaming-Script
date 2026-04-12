@@ -1,0 +1,106 @@
+# How to Improve Your Microphone with EasyEffects (openSUSE Tumbleweed / KDE 2026)
+
+## 1. Launch EasyEffects
+- From the application menu → EasyEffects
+- Or in terminal: `easyeffects`
+
+- Switch to the **Input** tab (top bar) — this is for microphone processing.
+- You should see a live level meter that moves when you speak.
+
+## 2. Select the Correct Microphone
+- In the top-right dropdown, choose your **physical microphone**.
+- Avoid “Monitor of…” or any virtual devices.
+- If the meter doesn’t move:
+  - Check KDE System Settings → Audio → Input Devices
+  - Make sure PipeWire is handling the device (it should be by default on Tumbleweed).
+
+## 3. Proper Gain Staging (Very Important)
+- Speak at your normal gaming voice level.
+- Adjust the **Input Gain** so peaks sit between **-18 dB and -12 dB** (some prefer -15 dB as a safe target).
+- Never let it hit 0 dB (red zone) — this causes clipping and distortion.
+- Fix low volume with input gain, **not** with compressor makeup gain.
+
+## 4. Recommended Effect Chain Order (Input Tab)
+Effects are applied from top to bottom. Drag them to reorder if needed.
+
+**Best order for gaming / Discord / streaming voice:**
+
+1. **High-Pass Filter** (removes rumble)
+2. **Noise Reduction** (RNNoise is usually best)
+3. **Gate** or **Expander** (reduces background noise when not speaking)
+4. **Compressor** (makes volume consistent)
+5. **Limiter** (safety net against peaks)
+6. **Equalizer** (optional — for clarity)
+
+### Specific Starting Settings
+
+- **High-Pass Filter**: Cutoff 80–100 Hz (removes mic stand thumps, keyboard noise, breathing rumble)
+
+- **Noise Reduction**:
+  - Prefer **RNNoise** (lightweight and effective for voice).
+  - Start with default settings.
+  - If it sounds too robotic, reduce strength or try the “Noise Suppression” plugin instead.
+
+- **Gate / Expander**:
+  - Use a soft gate (reduction around -12 to -20 dB) rather than hard cutting to silence.
+  - This sounds more natural than a sharp gate.
+
+- **Compressor** (biggest improvement for consistency):
+  - Ratio: 3:1 to 4:1
+  - Threshold: -18 dB to -22 dB
+  - Attack: 10–15 ms
+  - Release: 100–150 ms
+  - Makeup: Use lightly (or turn off and use Auto Gain if available)
+
+- **Limiter**:
+  - Ceiling: -1 dB
+  - Lookahead: On
+
+- **Equalizer** (optional, use sparingly):
+  - Gentle high-pass below 100–150 Hz
+  - Small boost around 2.5–4 kHz for intelligibility (clarity in voice chat)
+  - Avoid heavy boosts — subtle is better
+
+## 5. Discord Settings (Critical)
+Discord often fights with EasyEffects. Do this:
+
+- In Discord → User Settings → Voice & Video:
+  - Input Device → Select your **real physical mic** (not EasyEffects virtual)
+  - Turn **OFF**:
+    - Noise Suppression
+    - Echo Cancellation
+    - Automatic Gain Control
+    - Noise Reduction (if present)
+  - Set Input Mode to **Voice Activity** and calibrate sensitivity manually if needed.
+
+Let **EasyEffects** handle all processing.
+
+## 6. Saving and Auto-Start
+- Top-right → Presets → Save As… → Name it e.g. “Mic – Gaming Clean”
+- To make it start automatically on login (KDE):
+  - System Settings → Autostart → Add → EasyEffects
+  - Or run it minimized: `easyeffects --hide-window`
+
+**Note**: On recent KDE Plasma, the built-in service may not always start reliably. Using Autostart or a desktop entry is usually more stable.
+
+## Quick Tips
+- Always test while speaking normally and while being silent (check for noise gate behavior).
+- If your voice sounds thin/robotic after Noise Reduction → lower its strength or move it after the High-Pass Filter.
+- Monitor yourself in Discord or another app while adjusting (use headphones to avoid feedback).
+
+---
+
+### My Summary of Changes I Made
+- Updated gain targets to more realistic modern values (-18 to -12 dB instead of -12 to -6 dB).
+- Clarified **RNNoise** as the preferred noise reduction method (still the go-to in 2026 for real-time voice).
+- Added **Gate** as a separate step (many users prefer it over just Expander for voice chat).
+- Slightly adjusted compressor values based on common 2025–2026 community presets.
+- Improved Discord instructions.
+- Fixed auto-start advice (systemctl --user enable easyeffects is not always reliable on KDE).
+
+Would you like me to:
+- Turn this into a clean `.txt` or `.md` file ready to save?
+- Add a basic preset export format (if you want to share the actual preset)?
+- Include a section for using EasyEffects with your GameSir G7 Pro headset mic?
+
+Let me know how you want to refine it further!

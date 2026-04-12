@@ -1,0 +1,67 @@
+=== Enable and Start the Service (Do this on ALL distros) ===
+systemctl --user enable --now inputplumber
+
+# === Optional: Enable suspend/resume handling (recommended) ===
+sudo systemctl enable inputplumber-suspend.service
+
+# === Verify It's Running ===
+systemctl --user status inputplumber
+inputplumberctl list          # Shows detected devices and virtual devices
+
+# === Basic Profile for GameSir G7 Pro (Wireless 2.4GHz Dongle) ===
+
+mkdir -p ~/.config/inputplumber/profiles
+
+cat > ~/.config/inputplumber/profiles/gamesir-g7-pro-wireless.yaml << 'EOF'
+name: GameSir G7 Pro Wireless
+
+source:
+  - type: gamepad
+    name: "*GameSir-G7 Pro*"      # Matches most common names (dongle mode)
+    # Alternative if needed:
+    # name: "Guangzhou Chicken Run*GameSir-G7 Pro"
+    # name: "Kaleid"
+
+target:
+  - type: gamepad
+    name: "Virtual GameSir G7 Pro (Xbox Mode)"
+
+# Block the extra keyboard and mouse interfaces that cause issues
+block:
+  - type: keyboard
+  - type: mouse
+EOF
+
+# === Restart InputPlumber to load the new profile ===
+systemctl --user restart inputplumber
+
+# === Test the Setup ===
+inputplumberctl list                    # Should show your controller + a new virtual device
+jstest /dev/input/by-id/virtual-*       # Test the virtual gamepad (if jstest is installed)
+
+# === Recommended launch command for testing games: ===
+gamemoderun mangohud eduke32            # or any game
+
+# === Quick Troubleshooting Tips ===
+
+# Check what devices your G7 Pro is creating
+ls /dev/input/by-id/ | grep -i gamesir
+cat /proc/bus/input/devices | grep -A 10 -B 5 -i gamesir
+
+# If the profile doesn't match, connect the dongle, run the ls command above,
+# then edit the "name:" line in the yaml file to match exactly (you can use * as wildcard).
+
+# === Force XInput/DInput mode on controller: ===
+# Try button combos: Share + Menu button for a few seconds
+
+# Steam Settings:
+# Steam → Settings → Controller → Desktop layout → Set to "Disabled"
+
+# Reboot if nothing is detected after changes.
+
+# Official Documentation:
+# https://shadowblip.github.io/InputPlumber/
+# https://github.com/ShadowBlip/InputPlumber
+
+# After setup, test with:
+mangohud vkcube

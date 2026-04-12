@@ -1,0 +1,68 @@
+# gaming-packages-arch.txt
+
+# Enable [multilib] in /etc/pacman.conf first!
+
+# sudo nano/vi /etc/pacman.conf
+# Remove the # signs from below lines :
+# 	[multilib]
+# 	Include = /etc/pacman.d/mirrorlist
+# Press Ctrl + O → Enter → then Ctrl + X to save and exit
+# Update system - sudo pacman -Syu
+
+# Usage: yay -S --needed $(cat gaming-packages-arch.txt)   (or paru / pacman)
+
+# === Core Platforms ===
+steam
+discord
+heroic-games-launcher-bin
+eduke32
+
+# === Performance Tools ===
+gamemode
+lib32-gamemode
+mangohud
+lib32-mangohud
+goverlay
+gamescope
+
+# === Graphics Stack (AMD + RADV Vulkan) ===
+mesa
+lib32-mesa
+vulkan-radeon
+lib32-vulkan-radeon
+vulkan-icd-loader
+lib32-vulkan-icd-loader
+vulkan-tools
+mesa-vulkan-device-select   # optional but useful
+
+# === Firmware ===
+linux-firmware-amdgpu       # or just linux-firmware
+
+# === Controllers & Input ===
+steam-devices
+game-devices-udev
+inputplumber
+sdl2
+lib32-sdl2
+
+# === Audio (PipeWire) ===
+pipewire
+pipewire-alsa
+pipewire-pulse
+wireplumber
+easyeffects
+alsa-utils
+
+# === Post-Install Checks ===
+
+# === Install ProtonUp-Qt via Flatpak === (not in repos):
+flatpak install flathub net.davidotek.pupgui2
+
+# === Verify RADV Vulkan driver ===
+vulkaninfo | grep -E "driverName|deviceName"
+
+# === GameMode ===
+gamemoded -t
+
+# === MangoHud test ===
+mangohud vkcube

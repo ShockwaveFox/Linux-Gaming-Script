@@ -1,0 +1,56 @@
+# gaming-packages-debian.txt
+
+# Recommended: Enable contrib + non-free in /etc/apt/sources.list
+# Then: sudo apt update && sudo apt upgrade
+
+# Usage: sudo apt install $(cat gaming-packages-debian.txt)
+
+# === Core Platforms ===
+steam
+discord                    # From Discord's .deb or Flatpak
+heroic-games-launcher      # Often from Flatpak or third-party repo
+# eduke32                  # Not in official repos - use Flatpak instead
+
+# === Performance Tools ===
+gamemode
+mangohud
+goverlay                   # May need manual install or Flatpak
+gamescope
+
+# === Graphics Stack (AMD + RADV Vulkan) ===
+mesa-vulkan-drivers
+lib32-mesa-vulkan-drivers   # or mesa-vulkan-drivers:i386
+vulkan-tools
+libgl1-mesa-glx
+libegl1-mesa
+mesa-vulkan-device-select
+
+# === Firmware ===
+firmware-amd-graphics      # or linux-firmware
+
+# === Controllers & Input ===
+steam-devices
+inputplumber               # Download .deb from GitHub releases or build
+sdl2
+libsdl2-2.0-0:i386
+
+# === Audio (PipeWire) ===
+pipewire
+pipewire-pulse
+wireplumber
+easyeffects
+alsa-utils
+
+# === Post-Install Checks ===
+
+# === Install ProtonUp-Qt via Flatpak === (not in repos):
+flatpak install flathub net.davidotek.pupgui2
+
+# === Verify RADV Vulkan driver ===
+vulkaninfo | grep -E "driverName|deviceName"
+
+# === GameMode ===
+gamemoded -t
+
+# === MangoHud test ===
+mangohud vkcube

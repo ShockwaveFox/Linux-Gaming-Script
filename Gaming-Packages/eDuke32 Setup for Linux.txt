@@ -1,0 +1,115 @@
+# === eDuke32 Setup for Arch Linux ===
+
+# Option 1: AUR Package (Recommended - easy and up-to-date)
+yay -S eduke32          # or paru -S eduke32
+
+# Option 2: Flatpak
+flatpak install flathub com.eduke32.EDuke32
+
+# Option 3: Build from latest source
+sudo pacman -S --needed base-devel git sdl2 sdl2_mixer libpng libvpx flac libvorbis gtk2 nasm
+git clone https://voidpoint.io/terminx/eduke32.git
+cd eduke32
+make -j$(nproc)
+sudo cp eduke32 mapster32 /usr/local/bin/
+
+# === Game Data Files (required for all methods) ===
+mkdir -p ~/.config/eduke32
+
+# Copy your Duke Nukem 3D files here:
+# cp /path/to/DUKE3D.GRP ~/.config/eduke32/
+# cp /path/to/DUKE.RTS ~/.config/eduke32/
+
+# For Flatpak only:
+# mkdir -p ~/.var/app/com.eduke32.EDuke32/.config/eduke32
+# cp /path/to/DUKE3D.GRP ~/.var/app/com.eduke32.EDuke32/.config/eduke32/
+# cp /path/to/DUKE.RTS ~/.var/app/com.eduke32.EDuke32/.config/eduke32/
+
+# === Launch Commands ===
+# AUR / built version:
+eduke32
+
+# Flatpak:
+flatpak run com.eduke32.EDuke32
+
+# With performance tools:
+gamemoderun mangohud eduke32
+
+# === eDuke32 Setup for openSUSE Tumbleweed ===
+
+# Option 1: Native Package (Recommended - easiest)
+# The 'eduke32' package is available in the official 'games' repository
+sudo zypper in eduke32
+
+# Option 2: Flatpak (very reliable, sandboxed)
+flatpak install flathub com.eduke32.EDuke32
+
+# Option 3: Build from latest source (most up-to-date)
+sudo zypper in -t pattern devel_C_C++
+sudo zypper in git SDL2-devel SDL2_mixer-devel libpng-devel libvpx-devel libflac-devel libvorbis-devel gtk2-devel nasm
+git clone https://voidpoint.io/terminx/eduke32.git
+cd eduke32
+make -j$(nproc)
+sudo cp eduke32 mapster32 /usr/local/bin/
+
+# === Game Data Files (required for all methods) ===
+mkdir -p ~/.config/eduke32
+
+# Copy your Duke Nukem 3D files here (from Steam/GOG/etc.)
+# cp /path/to/DUKE3D.GRP ~/.config/eduke32/
+# cp /path/to/DUKE.RTS ~/.config/eduke32/
+
+# For Flatpak users only - copy to sandboxed location instead:
+# mkdir -p ~/.var/app/com.eduke32.EDuke32/.config/eduke32
+# cp /path/to/DUKE3D.GRP ~/.var/app/com.eduke32.EDuke32/.config/eduke32/
+# cp /path/to/DUKE.RTS ~/.var/app/com.eduke32.EDuke32/.config/eduke32/
+
+# === Launch Commands ===
+# Native package:
+eduke32
+
+# Flatpak:
+flatpak run com.eduke32.EDuke32
+
+# Built from source:
+eduke32
+
+# With GameMode + MangoHud (recommended):
+gamemoderun mangohud eduke32
+
+# === eDuke32 Setup for Solus ===
+
+# Note: No native package in official Solus repos
+
+# Option 1: Flatpak (Strongly Recommended - easiest)
+flatpak install flathub com.eduke32.EDuke32
+
+# Option 2: Build from latest source
+sudo eopkg install -c system.devel
+sudo eopkg install git sdl2-devel sdl2-mixer-devel libpng-devel libvpx-devel libflac-devel libvorbis-devel gtk2-devel nasm
+git clone https://voidpoint.io/terminx/eduke32.git
+cd eduke32
+make -j$(nproc)
+sudo cp eduke32 mapster32 /usr/local/bin/
+
+# === Game Data Files ===
+mkdir -p ~/.config/eduke32
+
+# Copy your Duke Nukem 3D files here (native build):
+# cp /path/to/DUKE3D.GRP ~/.config/eduke32/
+# cp /path/to/DUKE.RTS ~/.config/eduke32/
+
+# For Flatpak only:
+# mkdir -p ~/.var/app/com.eduke32.EDuke32/.config/eduke32
+# cp /path/to/DUKE3D.GRP ~/.var/app/com.eduke32.EDuke32/.config/eduke32/
+# cp /path/to/DUKE.RTS ~/.var/app/com.eduke32.EDuke32/.config/eduke32/
+
+# === Launch Commands ===
+# Flatpak:
+flatpak run com.eduke32.EDuke32
+
+# Built from source:
+eduke32
+
+# With your GameSir G7 Pro + performance:
+gamemoderun mangohud eduke32

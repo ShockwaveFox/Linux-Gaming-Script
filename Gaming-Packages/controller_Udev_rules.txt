@@ -24,3 +24,18 @@ libinput list-devices
 
 # Runs both commands - && only runs second command if first one is successful
       sudo udevadm control --reload-rules && sudo udevadm trigger
+
+
+# === New Rules ===
+# Ignore extra keyboard and mouse interfaces from GameSir G7 Pro (wireless dongle)
+# Adjust idProduct if your lsusb shows a different value (common: 1022)
+
+SUBSYSTEM=="input", ATTRS{idVendor}=="3537", ATTRS{idProduct}=="1022", \
+ATTRS{name}=="*GameSir-G7 Pro*", ENV{ID_INPUT_KEYBOARD}=="1", ENV{ID_INPUT_IGNORE}="1"
+
+SUBSYSTEM=="input", ATTRS{idVendor}=="3537", ATTRS{idProduct}=="1022", \
+ATTRS{name}=="*GameSir-G7 Pro*", ENV{ID_INPUT_MOUSE}=="1", ENV{ID_INPUT_IGNORE}="1"
+
+# Optional: Also ignore if it appears as a generic HID device
+SUBSYSTEM=="input", ATTRS{idVendor}=="3537", ATTRS{idProduct}=="1022", \
+KERNEL=="event*", ENV{ID_INPUT_KEYBOARD}=="1", ENV{ID_INPUT_IGNORE}="1"

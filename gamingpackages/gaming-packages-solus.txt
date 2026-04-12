@@ -1,0 +1,54 @@
+# gaming-packages-solus.txt
+# Usage: sudo eopkg install $(cat gaming-packages-solus.txt)
+
+# === Core Platforms ===
+steam
+discord
+heroic
+eduke32
+
+# === Performance Tools ===
+gamemode
+gamemode-32bit
+mangohud
+mangohud-32bit
+goverlay
+gamescope
+
+# === Graphics Stack (AMD + RADV Vulkan) ===
+mesa
+mesa-32bit
+vulkan
+vulkan-32bit
+# RADV is included in mesa on Solus (no separate libvulkan_radeon needed)
+
+# === Firmware ===
+# Kernel firmware is usually pulled in automatically with kernel
+
+# === Controllers & Input ===
+steam-devices
+inputplumber
+sdl2
+sdl2-32bit
+
+# === Audio (PipeWire) ===
+pipewire
+pipewire-alsa
+pipewire-pulse
+wireplumber
+easyeffects
+alsa-utils
+
+# === Post-Install Checks ===
+
+# === Install ProtonUp-Qt via Flatpak === (not in repos):
+flatpak install flathub net.davidotek.pupgui2
+
+# === Verify RADV Vulkan driver ===
+vulkaninfo | grep -E "driverName|deviceName"
+
+# === GameMode ===
+gamemoded -t
+
+# === MangoHud test ===
+mangohud vkcube
