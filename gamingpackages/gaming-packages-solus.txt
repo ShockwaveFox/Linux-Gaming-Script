@@ -1,29 +1,31 @@
 # gaming-packages-solus.txt
 # Usage: sudo eopkg install $(cat gaming-packages-solus.txt)
 
+#!/bin/bash
+
+gaming="steam heroic-games-launcher"
+performance="mangohud mangohud-32bit goverlay"
+graphics="mesa mesa-32bit vulkan vulkan-32bit"
+input="steam-devices sdl2 sdl2-32bit"
+audio="pipewire pipewire-alsa pipewire-pulse wireplumber alsa-utils discord"
+
+sudo eopkg install ($gaming && $performance && $graphics && $input && $audio)
+echo sudo eopkg install history | grep Installed
+
 # === Core Platforms ===
 steam
-discord
-heroic
-eduke32
+heroic-games-launcher
 
 # === Performance Tools ===
-gamemode
-gamemode-32bit
 mangohud
 mangohud-32bit
 goverlay
-gamescope
 
 # === Graphics Stack (AMD + RADV Vulkan) ===
 mesa
 mesa-32bit
 vulkan
 vulkan-32bit
-# RADV is included in mesa on Solus (no separate libvulkan_radeon needed)
-
-# === Firmware ===
-# Kernel firmware is usually pulled in automatically with kernel
 
 # === Controllers & Input ===
 steam-devices
@@ -36,19 +38,22 @@ pipewire
 pipewire-alsa
 pipewire-pulse
 wireplumber
-easyeffects
 alsa-utils
+discord
+
+echo sudo eopkg install history | grep Installed
 
 # === Post-Install Checks ===
 
 # === Install ProtonUp-Qt via Flatpak === (not in repos):
-flatpak install flathub net.davidotek.pupgui2
+# flatpak install flathub net.davidotek.pupgui2
+# eduke32
 
 # === Verify RADV Vulkan driver ===
-vulkaninfo | grep -E "driverName|deviceName"
+# vulkaninfo | grep -E "driverName|deviceName"
 
 # === GameMode ===
-gamemoded -t
+# gamemoded -t
 
 # === MangoHud test ===
-mangohud vkcube
+# mangohud vkcube
